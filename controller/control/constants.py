@@ -1,0 +1,3 @@
+LEFT = 1
+RIGHT = 2
+STRAIGHT = 0
