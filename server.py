@@ -38,8 +38,10 @@ def handle(integer):
     t = threading.Thread(target=check, args=(_id,))
     t.start()
 
+def on_connect(addr):
+    print(f"connection from {addr}")
 
-s = Server(handle_msg=handle)
+s = Server(handle_msg=handle, on_connect=on_connect)
 try:
     s.run()
 except KeyboardInterrupt:
