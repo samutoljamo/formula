@@ -41,7 +41,6 @@ def handle(integer):
 
 s = Server(handle_msg=handle)
 try:
-    t.start()
     s.run()
 except KeyboardInterrupt:
     pass
