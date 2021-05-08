@@ -8,8 +8,8 @@ class DCMotor:
         self.pwm_pin = pwm_pin
         self.in_pin = in_pin
         self.in2_pin = in2_pin
-        self.pwm = GPIO.PWM(self.pwm_pin, pwm_freq)
         GPIO.setup((self.pwm_pin, self.in_pin, self.in2_pin), GPIO.OUT, initial=GPIO.LOW)
+        self.pwm = GPIO.PWM(self.pwm_pin, pwm_freq)
 
     def start(self, power=100, forward=True):
         self.pwm.start(power)
