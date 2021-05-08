@@ -43,7 +43,7 @@ class SteeringMotor(DCMotor):
             self.right()
     def straight(self):
         self.control(power=0)
-    def left():
+    def left(self):
         self.control(forward=True)
     def right(self):
         self.control(forward=False)
