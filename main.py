@@ -25,6 +25,7 @@ steering.left()
 engine.control(power=70, forward=False)
 time.sleep(3)
 steering.straight()
+time.sleep(2)
 engine.control(power=0)
 GPIO.cleanup()
 
