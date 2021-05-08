@@ -18,11 +18,13 @@ steering = SteeringMotor(ST_PWM_PIN, ST_IN1_PIN, ST_IN2_PIN)
 engine.start(0)
 steering.start()
 time.sleep(2)
-inp = ""
-while inp != "q":
-    power = int(input("power: "))
+while True:
+    try:
+        power = int(input("power: "))
+    except:
+        break
     t = int(input("time: "))
-    engine.control(power=power)
+    engine.control(power=power, forward=False)
     time.sleep(t)
     engine.control(power=0)
 GPIO.cleanup()
