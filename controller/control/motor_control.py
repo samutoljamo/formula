@@ -10,9 +10,13 @@ class DCMotor:
         self.in2_pin = in2_pin
         GPIO.setup((self.pwm_pin, self.in_pin, self.in2_pin), GPIO.OUT, initial=GPIO.LOW)
         self.pwm = GPIO.PWM(self.pwm_pin, pwm_freq)
+        self.power = 0
+        self.forward = True
 
     def start(self, power=100, forward=True):
         self.pwm.start(power)
+        self.power = power
+        self.forward = forward
         if forward:
             GPIO.output(self.in_pin, GPIO.HIGH)
             GPIO.output(self.in2_pin, GPIO.LOW)
@@ -21,12 +25,15 @@ class DCMotor:
             GPIO.output(self.in2_pin, GPIO.HIGH)
     def control(self, power=100, forward=True):
         self.pwm.ChangeDutyCycle(power)
-        if forward:
-            GPIO.output(self.in_pin, GPIO.HIGH)
-            GPIO.output(self.in2_pin, GPIO.LOW)
-        else:
-            GPIO.output(self.in_pin, GPIO.LOW)
-            GPIO.output(self.in2_pin, GPIO.HIGH)
+        if power!=self.power or forward!=self.forward:
+            if forward:
+                GPIO.output(self.in_pin, GPIO.HIGH)
+                GPIO.output(self.in2_pin, GPIO.LOW)
+            else:
+                GPIO.output(self.in_pin, GPIO.LOW)
+                GPIO.output(self.in2_pin, GPIO.HIGH)
+            self.power = power
+            self.forward = forward
     def stop(self):
         GPIO.output((self.in_pin, self.in2_pin), GPIO.LOW)
         self.pwm.stop()
