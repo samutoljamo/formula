@@ -4,11 +4,11 @@ if os.getenv("DEBUG") != "1":
 from .constants import LEFT, RIGHT, STRAIGHT
 
 class DCMotor:
-    def __init__(self, pwm_pin, in_pin, in2_pin, pwn_freq=100):
+    def __init__(self, pwm_pin, in_pin, in2_pin, pwm_freq=100):
         self.pwm_pin = pwm_pin
         self.in_pin = in_pin
         self.in2_pin = in2_pin
-        self.pwm = GPIO.PWN(self.pwm_pin, pwm_freq)
+        self.pwm = GPIO.PWM(self.pwm_pin, pwm_freq)
         GPIO.setup((self.pwm_pin, self.in_pin, self.in2_pin), GPIO.OUT, initial=GPIO.LOW)
 
     def start(self, power=100, forward=True):
