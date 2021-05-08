@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-from control import DCMotor, SteeringMotor
+from controller.control import DCMotor, SteeringMotor
 import time
 
 GPIO.setmode(GPIO.BOARD)
